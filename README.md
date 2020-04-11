@@ -23,7 +23,7 @@ The result of any call will be a table with the following structure:
 
 ### Get
 ```lua
-hc = require('httpclient').new()
+hc = require('httpclient'):new()
 res = hc:get('http://httpbin.org/get')
 if res.body then
   print(res.body)
@@ -49,7 +49,7 @@ end
 
 ### Post
 ```lua
-hc = require('httpclient').new()
+hc = require('httpclient'):new()
 res = hc:post('http://httpbin.org/post','somepostdata')
 ```
 
@@ -85,7 +85,7 @@ The above stanza sets up an internal capture location called `/capture`. When a 
 You can use either `content_by_lua` or `content_by_lua_file` with something like so in it:
 
 ```lua
-local hc = require("httpclient").new('httpclient.ngx_driver')
+local hc = require("httpclient"):new('httpclient.ngx_driver')
 
 local d,_ = hc:get("https://httpbin.org/get")
 
@@ -96,7 +96,7 @@ ngx.say(d.body)
 Note the default options for the `ngx_driver` are to use a capture location of `/capture` and for the real url to be passed with an arg name of `url`. This can be overridden like so:
 
 ```lua
-local hc = require("httpclient").new('httpclient.ngx_driver')
+local hc = require("httpclient"):new('httpclient.ngx_driver')
 hc:set_default('capture_url', '/somewhere_else')
 hc:set_default('capture_variable', 'someother_variable')
 ```
