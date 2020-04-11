@@ -2,21 +2,21 @@ local utils = require("httpclient.utils")
 local urlparser = require("httpclient.neturl")
 
 local HttpClient = {}
-local m = {}
+local m = {
+  VERSION = "v0.1"
+}
 
 local DEFAULT_DRIVER = 'httpclient.luasocket_driver'
 
-function m.new(x)
-  local self = {}
+function m:new(x)
   local d = x or DEFAULT_DRIVER
   local driver_ok, driver = pcall(require, d) 
   if not driver_ok then
     return nil
   end
-  self.client = driver.new()
+  self.client = driver:new()
   self.defaults = self.client.defaults
-  setmetatable(self, {__index = HttpClient})
-  return self
+  return setmetatable(self, {__index = HttpClient})
 end
 
 local function merge_defaults(t1, defaults)
