@@ -126,6 +126,7 @@ Alternately, you can install via the included `Makefile`. You'll probably want t
 
 ## Requirements
 The following versions were tested
+- lua 5.3
 - lua 5.2 (the version that shipped with trusty)
 - luasec 0.5-2 (only required for https support)
 - luasocket 3.0rc1-1
