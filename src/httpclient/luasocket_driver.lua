@@ -5,7 +5,9 @@ local ltn12 = require("ltn12")
 local utils = require("httpclient.utils")
 
 local LuaSocketDriver = {}
-local luasocketdriver = {}
+local luasocketdriver = {
+  VERSION = "v0.1"
+}
 
 local default_ssl_params = {
   mode = "client",
@@ -31,11 +33,9 @@ local function merge_defaults(t1, defaults)
   return t1
 end
 
-function luasocketdriver.new(opts)
-  local self = {}
+function luasocketdriver:new(opts)
   self.defaults = (get_default_opts(opts or {}))
-  setmetatable(self, { __index = LuaSocketDriver })
-  return self
+  return setmetatable(self, { __index = LuaSocketDriver })
 end
 
 function LuaSocketDriver:set_default(param, value)
