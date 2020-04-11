@@ -1,7 +1,9 @@
 local utils = require("httpclient.utils")
 
 local NgxDriver = {}
-local ngxdriver = {}
+local ngxdriver = {
+  VERSION = "v0.1"
+}
 
 local default_opts = {
   capture_url = '/capture',
@@ -22,11 +24,9 @@ local function merge_defaults(t1, defaults)
   return t1
 end
 
-function ngxdriver.new(opts)
-  local self = {}
+function ngxdriver:new(opts)
   self.defaults = (get_default_opts(opts or {}))
-  setmetatable(self, { __index = NgxDriver })
-  return self
+  return setmetatable(self, { __index = NgxDriver })
 end
 
 function NgxDriver:set_default(param, value)
